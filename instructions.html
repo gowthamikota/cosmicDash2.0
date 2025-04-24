@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>cosmicDash - Instructions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +16,7 @@
             background: #0a0a1a;
             margin: 0;
             padding: 0;
+            -webkit-overflow-scrolling: touch;
         }
 
         .instructions-container {
@@ -25,12 +26,14 @@
             color: #fff;
             min-height: 100vh;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
 
         .instructions-header {
             text-align: center;
-            margin-bottom: 30px;
-            padding-top: 20px;
+            margin-bottom: 20px;
+            padding-top: 10px;
         }
 
         .instructions-header h1 {
@@ -39,45 +42,53 @@
             color: #6C5CE7;
         }
 
+        .instructions-header p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
         .instructions-section {
             background: rgba(108, 92, 231, 0.1);
             border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 15px;
+            margin-bottom: 15px;
             border: 2px solid rgba(108, 92, 231, 0.3);
         }
 
         .instructions-section h2 {
             color: #6C5CE7;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            font-size: 1.3em;
         }
 
         .instructions-section p {
-            margin-bottom: 10px;
-            line-height: 1.6;
+            margin-bottom: 8px;
+            line-height: 1.5;
         }
 
         .controls-list {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         .controls-list li {
-            margin-bottom: 15px;
-            padding: 10px;
+            margin-bottom: 10px;
+            padding: 8px;
             background: rgba(108, 92, 231, 0.05);
             border-radius: 8px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .controls-list i {
             color: #6C5CE7;
-            font-size: 1.2em;
+            font-size: 1.1em;
+            min-width: 20px;
         }
 
         .back-button {
@@ -91,9 +102,10 @@
             cursor: pointer;
             text-decoration: none;
             transition: all 0.3s ease;
-            margin: 20px 0;
+            margin: 20px auto;
             position: relative;
             z-index: 1;
+            text-align: center;
         }
 
         .back-button:hover {
@@ -104,12 +116,14 @@
         .tips-list {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         .tips-list li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             padding-left: 25px;
             position: relative;
+            line-height: 1.4;
         }
 
         .tips-list li:before {
@@ -120,22 +134,52 @@
 
         @media (max-width: 768px) {
             .instructions-container {
-                padding: 15px;
+                padding: 10px;
                 width: 100%;
             }
 
             .instructions-header h1 {
-                font-size: 2em;
+                font-size: 1.8em;
+            }
+
+            .instructions-header p {
+                font-size: 1em;
+            }
+
+            .instructions-section {
+                padding: 12px;
+                margin-bottom: 12px;
+            }
+
+            .instructions-section h2 {
+                font-size: 1.2em;
             }
 
             .controls-list li {
                 font-size: 0.9em;
+                padding: 8px 10px;
             }
 
             .back-button {
-                width: 100%;
-                text-align: center;
-                box-sizing: border-box;
+                width: 90%;
+                max-width: 300px;
+                display: block;
+                margin: 15px auto;
+                padding: 10px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .instructions-header h1 {
+                font-size: 1.6em;
+            }
+
+            .instructions-section h2 {
+                font-size: 1.1em;
+            }
+
+            .controls-list li {
+                font-size: 0.85em;
             }
         }
     </style>
