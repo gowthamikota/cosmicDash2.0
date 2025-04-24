@@ -1,4 +1,4 @@
-# 🌌 Nebula Runner
+# 🌌 cosmicDash
 
 A high-performance 3D space-themed runner game built with Three.js. Navigate through cosmic obstacles, collect power-ups, and achieve the highest score in this immersive space adventure.
 
@@ -37,25 +37,14 @@ A high-performance 3D space-themed runner game built with Three.js. Navigate thr
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/nebula-runner.git
-   cd nebula-runner
+   git clone https://github.com/yourusername/cosmicDash.git
+   cd cosmicDash
    ```
-
-2. Install dependencies:
-   ```bash
-   npm install
+python : python -m http.server
+Open your browser and navigate to:
    ```
-
-3. Start the development server:
-   ```bash
-   npm start
-   ```
-
-4. Open your browser and navigate to:
-   ```
-   http://localhost:3000
-   ```
-
+   http://localhost:8000
+   ``
 ## 🎯 How to Play
 
 ### Controls
@@ -83,25 +72,13 @@ A high-performance 3D space-themed runner game built with Three.js. Navigate thr
 
 ### Project Structure
 ```
-nebula-runner/
-├── src/
-│   ├── game.js          # Game logic and rendering
-│   ├── styles.css       # Game styles
-│   └── assets/          # Game assets
-├── index.html           # Main HTML file
-├── package.json         # Project dependencies
+cosmicDash/
+├── game.js
+├── style.css       
+├── index.html          # Main HTML file       
 └── README.md           # Documentation
 ```
 
-### Building for Production
-```bash
-npm run build
-```
-
-### Running Tests
-```bash
-npm test
-```
 
 ## 📊 Performance Optimization
 
@@ -113,17 +90,8 @@ npm test
 
 ## 🤝 Contributing
 
-We welcome contributions! Please follow these steps:
+We welcome contributions! 
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
