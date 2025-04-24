@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>cosmicDash</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +24,8 @@
             text-decoration: none;
             text-align: center;
             max-width: 200px;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
 
         .instructions-button:hover {
@@ -39,6 +41,25 @@
             .instructions-button {
                 padding: 12px 25px;
                 font-size: 1.1em;
+                width: 80%;
+                max-width: 250px;
+                margin: 15px auto;
+            }
+
+            .start-screen {
+                padding: 20px;
+            }
+
+            .controls-info {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .instructions-button {
+                padding: 10px 20px;
+                font-size: 1em;
             }
         }
     </style>

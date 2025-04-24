@@ -14,6 +14,8 @@
             overflow: hidden;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             font-family: 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
 
         .game-ui {
@@ -257,22 +259,21 @@
         /* Start Screen */
         .start-screen {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--text-light);
             width: 100%;
-            height: 100%;
-            background: var(--background-dark);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(10px);
+            max-width: 500px;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         .start-screen h1 {
+            font-size: 3.5em;
+            margin-bottom: 30px;
             color: var(--primary-color);
-            font-size: 72px;
-            margin: 0 0 20px 0;
             text-shadow: 0 0 20px rgba(108, 92, 231, 0.5);
             background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
@@ -283,21 +284,24 @@
             background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             border: none;
             padding: 20px 50px;
-            font-size: 24px;
+            font-size: 1.5em;
             color: var(--text-light);
-            border-radius: 15px;
+            border-radius: 30px;
             cursor: pointer;
-            margin-top: 30px;
+            margin: 20px 0;
             transition: all 0.3s ease;
+            pointer-events: auto;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             font-weight: bold;
-            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
 
         .start-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 92, 231, 0.6);
         }
 
         .start-button:active {
@@ -305,14 +309,75 @@
         }
 
         .controls-info {
-            color: var(--text-light);
-            font-size: 18px;
             margin-top: 30px;
-            text-align: center;
-            line-height: 1.6;
+            font-size: 1.1em;
+            color: var(--text-light);
+            text-shadow: var(--text-shadow);
+            padding: 15px;
+            background: var(--background-dark);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .controls-info i {
-            color: var(--accent-color);
             margin: 0 5px;
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .start-screen h1 {
+                font-size: 2.5em;
+                margin-bottom: 20px;
+            }
+
+            .start-button {
+                padding: 15px 40px;
+                font-size: 1.2em;
+            }
+
+            .controls-info {
+                font-size: 0.9em;
+                padding: 10px;
+                margin-top: 20px;
+            }
+
+            #score, #combo {
+                font-size: 18px;
+                padding: 10px 15px;
+            }
+
+            .health-container {
+                width: 250px;
+                height: 15px;
+            }
+
+            .power-up {
+                font-size: 16px;
+                padding: 8px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .start-screen h1 {
+                font-size: 2em;
+            }
+
+            .start-button {
+                padding: 12px 30px;
+                font-size: 1.1em;
+            }
+
+            .controls-info {
+                font-size: 0.8em;
+                margin-top: 15px;
+            }
+
+            #score, #combo {
+                font-size: 16px;
+                padding: 8px 12px;
+            }
+
+            .health-container {
+                width: 200px;
+            }
         }
