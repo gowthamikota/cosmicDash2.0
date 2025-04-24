@@ -368,6 +368,7 @@ function createVirtualJoystick() {
     // Create joystick base
     joystickBase = document.createElement('div');
     joystickBase.id = 'joystick-base';
+    joystickBase.style.display = 'none'; // Initially hidden
     document.body.appendChild(joystickBase);
 
     // Create joystick handle
@@ -386,9 +387,6 @@ function createVirtualJoystick() {
         pointer-events: none;
     `;
     joystickBase.appendChild(glowEffect);
-
-    // Always show the joystick
-    joystickBase.style.display = 'block';
 }
 
 // Handle orientation change with improved reliability
@@ -654,47 +652,28 @@ function startGame() {
     obstacles = [];
     collectibles = [];
     
-    // Show joystick for mobile
-    if (isMobileDevice) {
-        createVirtualJoystick();
-        if (joystickBase) {
-            joystickBase.classList.add('visible');
-            // Force a reflow to ensure the joystick is visible
-            joystickBase.offsetHeight;
-        }
+    // Show joystick only when game is started
+    if (joystickBase) {
+        joystickBase.style.display = 'block';
     }
     
-    // Show custom cursor for mouse users
-    if (!isMobileDevice) {
-        const cursor = document.querySelector('.custom-cursor');
-        if (cursor) cursor.classList.add('visible');
-    }
-    
-    // Update UI
+    // Hide start screen
     const startScreen = document.querySelector('.start-screen');
-    const gameOverScreen = document.getElementById('gameOver');
-    
     if (startScreen) {
         startScreen.style.display = 'none';
-        // Force a reflow to ensure the screen is hidden
-        startScreen.offsetHeight;
     }
     
+    // Hide game over screen
+    const gameOverScreen = document.getElementById('gameOver');
     if (gameOverScreen) {
         gameOverScreen.style.display = 'none';
     }
     
-    document.querySelector('.power-up').classList.remove('active');
+    // Update UI
     updateScore();
     updateCombo();
     updateHealthBar();
-    
-    // Log game start
-    console.log('Game started:', {
-        isMobileDevice,
-        joystickVisible: joystickBase ? joystickBase.classList.contains('visible') : false,
-        startScreenHidden: startScreen ? startScreen.style.display === 'none' : false
-    });
+    document.querySelector('.power-up').classList.remove('active');
 }
 
 // Update joystick position and player movement with improved responsiveness
@@ -1282,24 +1261,12 @@ function gameOver() {
         gameOverScreen.style.display = 'block';
         document.getElementById('finalScore').textContent = score;
         document.getElementById('highestCombo').textContent = `x${highestCombo}`;
+    }
         
-        // Add touch event listener for the restart button
-        const restartButton = gameOverScreen.querySelector('.restart-button');
-        if (restartButton) {
-            restartButton.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                restartGame();
-            }, { passive: false });
-        }
-    }
-    
+    // Hide joystick when game is over
     if (joystickBase) {
-        joystickBase.classList.remove('visible');
+        joystickBase.style.display = 'none';
     }
-    
-    // Hide custom cursor
-    const cursor = document.querySelector('.custom-cursor');
-    if (cursor) cursor.classList.remove('visible');
 }
 
 // Add restart game function
@@ -1324,6 +1291,11 @@ function restartGame() {
     obstacles = [];
     collectibles = [];
     
+    // Hide joystick when not in game
+    if (joystickBase) {
+        joystickBase.style.display = 'none';
+    }
+    
     // Hide game over screen
     const gameOverScreen = document.getElementById('gameOver');
     if (gameOverScreen) {
@@ -1341,13 +1313,6 @@ function restartGame() {
     updateCombo();
     updateHealthBar();
     document.querySelector('.power-up').classList.remove('active');
-    
-    // Log restart
-    console.log('Game restarted:', {
-        isMobileDevice,
-        startScreenVisible: startScreen ? startScreen.style.display !== 'none' : false,
-        gameOverScreenHidden: gameOverScreen ? gameOverScreen.style.display === 'none' : false
-    });
 }
 
 // Animation loop with timestamp
