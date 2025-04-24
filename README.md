@@ -1,97 +1,141 @@
-# Nebula Runner
+# 🌌 Nebula Runner
 
-A thrilling 3D space-themed runner game where you navigate through cosmic obstacles and collect power-ups in a futuristic environment.
+A high-performance 3D space-themed runner game built with Three.js. Navigate through cosmic obstacles, collect power-ups, and achieve the highest score in this immersive space adventure.
 
-## Features
 
-- 🚀 Smooth 3D gameplay with responsive controls
-- 🌌 Beautiful space environment with stars and planets
-- 🎯 Three-lane navigation system
-- ⭐ Various collectibles (coins, gems, stars)
-- 💫 Power-ups and special abilities
-- 📊 Score tracking and combo system
-- 🎮 Progressive difficulty with level system
-- ✨ Visual effects and particle systems
+## ✨ Features
 
-## How to Play
+### 🎮 Gameplay
+- Smooth 3D movement with responsive controls
+- Three-lane navigation system
+- Dynamic obstacle generation
+- Progressive difficulty scaling
+- Combo multiplier system
 
-1. **Controls**:
-   - `←` / `→` Arrow Keys: Move between lanes
-   - `↑` Arrow Key: Jump
-   - Collect items to increase your score
-   - Avoid obstacles to maintain health
+### 🎨 Visuals
+- Stunning space environment
+- Particle effects and animations
+- Dynamic lighting and shadows
+- Smooth camera transitions
+- Modern UI with real-time feedback
 
-2. **Game Mechanics**:
-   - Navigate through three lanes in space
-   - Collect items to build combos
-   - Use power-ups for temporary invincibility
-   - Progress through levels as you score points
+### 🏆 Scoring System
+- Multiple collectible types
+- Combo multiplier mechanics
+- High score tracking
+- Achievement system
+- Detailed game statistics
 
-3. **Scoring**:
-   - Basic collectibles: 10 points
-   - Combo multiplier: Increases with consecutive collects
-   - Power-ups: Bonus points and temporary invincibility
+## 🚀 Getting Started
 
-## Technical Details
+### Prerequisites
+- Modern web browser with WebGL support
+- Node.js (v14 or higher) for development
+- Git for version control
 
-- Built with Three.js for 3D rendering
-- Modern JavaScript (ES6+)
-- Responsive design
-- Optimized performance
-- Smooth animations and transitions
-
-## Installation
+### Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/gowthamikota/cosmicDash
+   git clone https://github.com/yourusername/nebula-runner.git
+   cd nebula-runner
    ```
 
-2. Navigate to the project directory:
+2. Install dependencies:
    ```bash
-   cd cosmicDash
+   npm install
    ```
 
-## How to Run
- 
- 1. You'll need a local web server to run this game. You can use any of these methods:
-    - Using Python: `python -m http.server`
-    - Using Node.js: Install `http-server` globally with `npm install -g http-server` and run `http-server`
-    - Using VS Code: Install the "Live Server" extension and right-click on `index.html` to "Open with Live Server"
+3. Start the development server:
+   ```bash
+   npm start
    ```
 
-## Development
+4. Open your browser and navigate to:
+   ```
+   http://localhost:3000
+   ```
 
-### Prerequisites
+## 🎯 How to Play
 
-- Node.js (v14 or higher)
-- Modern web browser with WebGL support
+### Controls
+- `←` / `→` Arrow Keys: Move between lanes
+- `↑` Arrow Key: Jump
+- `Space`: Quick restart (after game over)
+- `P`: Pause game
+
+### Game Mechanics
+- Navigate through three lanes in space
+- Collect items to build combos
+- Avoid obstacles to maintain health
+- Use power-ups for special abilities
+- Progress through levels as you score points
+
+### Scoring
+| Action | Points | Combo Multiplier |
+|--------|--------|-----------------|
+| Basic Collectible | 10 | 1x |
+| Special Collectible | 25 | 1.5x |
+| Power-up | 50 | 2x |
+| Perfect Combo | +100 | 3x |
+
+## 🛠️ Development
 
 ### Project Structure
-
 ```
 nebula-runner/
-├── index.html          # Main HTML file
-├── game.js            # Game logic and rendering
-├── styles.css         # Game styles
-└── README.md          # Documentation
+├── src/
+│   ├── game.js          # Game logic and rendering
+│   ├── styles.css       # Game styles
+│   └── assets/          # Game assets
+├── index.html           # Main HTML file
+├── package.json         # Project dependencies
+└── README.md           # Documentation
 ```
 
-## Contributing
+### Building for Production
+```bash
+npm run build
+```
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+### Running Tests
+```bash
+npm test
+```
+
+## 📊 Performance Optimization
+
+- Frame-rate independent movement
+- Efficient collision detection
+- Optimized 3D rendering
+- Smooth animations
+- Memory management
+
+## 🤝 Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Three.js](https://threejs.org/) - 3D rendering library
+- [Font Awesome](https://fontawesome.com/) - Icons
+- [Google Fonts](https://fonts.google.com/) - Typography
+
+## 📞 contact
+
+email [gowthamikota25@gmail.com](mailto:gowthamikota25@gmail.com) 
 
 
-## Acknowledgments
-
-- Three.js for 3D rendering
-- Font Awesome for icons
-- Google Fonts for typography
-
-## Contact
-
-For any questions or suggestions, please reach out to [gowthamikota25@gmail.com](mailto:gowthamikota25@gmail.com)
-
----
-
-Enjoy your journey in cosmicDash! 🚀 
+<div align="center">
+  <p>Made with ❤️ by the Gowthami</p>
+</div> 
