@@ -9,7 +9,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-   
+    <style>
+        .instructions-button {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 30px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: 2px solid #4a90e2;
+            border-radius: 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            max-width: 200px;
+        }
+
+        .instructions-button:hover {
+            background: rgba(74, 144, 226, 0.3);
+            transform: scale(1.05);
+        }
+
+        .instructions-button i {
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .instructions-button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="game-ui">
@@ -42,6 +74,9 @@
         <button class="start-button" id="startButton" ontouchstart="startGame()" onclick="startGame()">
             <i class="fas fa-play"></i> Start Game
         </button>
+        <a href="instructions.html" class="instructions-button">
+            <i class="fas fa-book"></i> How to Play
+        </a>
         <div class="controls-info">
             <p><i class="fas fa-hand-pointer"></i> Tap to Jump</p>
             <p><i class="fas fa-arrows-left-right"></i> Swipe to Move</p>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cosmicDash - Instructions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .instructions-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .instructions-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .instructions-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #6C5CE7;
+        }
+
+        .instructions-section {
+            background: rgba(108, 92, 231, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(108, 92, 231, 0.3);
+        }
+
+        .instructions-section h2 {
+            color: #6C5CE7;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .instructions-section p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .controls-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .controls-list li {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(108, 92, 231, 0.05);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .controls-list i {
+            color: #6C5CE7;
+            font-size: 1.2em;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #6C5CE7;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            background: #5a4bc7;
+            transform: translateY(-2px);
+        }
+
+        .tips-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tips-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .tips-list li:before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .instructions-container {
+                padding: 15px;
+            }
+
+            .instructions-header h1 {
+                font-size: 2em;
+            }
+
+            .controls-list li {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions-container">
+        <div class="instructions-header">
+            <h1>How to Play cosmicDash</h1>
+            <p>Navigate through space, collect power-ups, and achieve the highest score!</p>
+        </div>
+
+        <div class="instructions-section">
+            <h2><i class="fas fa-gamepad"></i> Game Controls</h2>
+            <ul class="controls-list">
+                <li>
+                    <i class="fas fa-hand-pointer"></i>
+                    <span>Tap to Jump - Double tap for higher jumps</span>
+                </li>
+                <li>
+                    <i class="fas fa-arrows-left-right"></i>
+                    <span>Swipe left/right to change lanes</span>
+                </li>
+                <li>
+                    <i class="fas fa-star"></i>
+                    <span>Collect stars for power-ups and bonus points</span>
+                </li>
+                <li>
+                    <i class="fas fa-bolt"></i>
+                    <span>Build combos by collecting items in sequence</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="instructions-section">
+            <h2><i class="fas fa-trophy"></i> Scoring System</h2>
+            <ul class="controls-list">
+                <li>
+                    <i class="fas fa-check"></i>
+                    <span>Basic Obstacle Avoided: 10 points</span>
+                </li>
+                <li>
+                    <i class="fas fa-star"></i>
+                    <span>Energy Orb Collected: 25 points</span>
+                </li>
+                <li>
+                    <i class="fas fa-bolt"></i>
+                    <span>Power-up Collected: 50 points</span>
+                </li>
+                <li>
+                    <i class="fas fa-fire"></i>
+                    <span>Perfect Combo Bonus: +100 points</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="instructions-section">
+            <h2><i class="fas fa-palette"></i> Visual Elements</h2>
+            <ul class="controls-list">
+                <li>
+                    <i class="fas fa-cube" style="color: #4a90e2"></i>
+                    <span>Player Ship: <span style="color: #4a90e2">Blue</span> with glowing effect</span>
+                </li>
+                <li>
+                    <i class="fas fa-exclamation-triangle" style="color: #ff4444"></i>
+                    <span>Obstacles: <span style="color: #ff4444">Red</span> with warning glow</span>
+                </li>
+                <li>
+                    <i class="fas fa-star" style="color: #ffd700"></i>
+                    <span>Power-ups: <span style="color: #ffd700">Golden</span> with pulsing effect</span>
+                </li>
+                <li>
+                    <i class="fas fa-circle" style="color: #00ff00"></i>
+                    <span>Energy Orbs: <span style="color: #00ff00">Green</span> with floating animation</span>
+                </li>
+                <li>
+                    <i class="fas fa-bolt" style="color: #ff00ff"></i>
+                    <span>Combo Boosters: <span style="color: #ff00ff">Magenta</span> with electric effect</span>
+                </li>
+                <li>
+                    <i class="fas fa-shield-alt" style="color: #00ffff"></i>
+                    <span>Shield Power-up: <span style="color: #00ffff">Cyan</span> with protective aura</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="instructions-section">
+            <h2><i class="fas fa-lightbulb"></i> Pro Tips</h2>
+            <ul class="tips-list">
+                <li>Time your jumps carefully to avoid obstacles</li>
+                <li>Collect power-ups to become invincible temporarily</li>
+                <li>Maintain your combo multiplier for higher scores</li>
+                <li>Watch out for increasing difficulty as you progress</li>
+                <li>Use the joystick for precise movement control</li>
+            </ul>
+        </div>
+
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Game
+        </a>
+    </div>
+</body>
+</html> 
