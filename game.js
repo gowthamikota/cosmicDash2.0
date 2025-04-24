@@ -658,10 +658,14 @@ function startGame() {
     obstacles = [];
     collectibles = [];
     
-    // Show joystick
-    createVirtualJoystick();
-    if (joystickBase) {
-        joystickBase.classList.add('visible');
+    // Show joystick for mobile
+    if (isMobileDevice) {
+        createVirtualJoystick();
+        if (joystickBase) {
+            joystickBase.classList.add('visible');
+            // Force a reflow to ensure the joystick is visible
+            joystickBase.offsetHeight;
+        }
     }
     
     // Show custom cursor for mouse users
@@ -671,12 +675,30 @@ function startGame() {
     }
     
     // Update UI
-    document.querySelector('.start-screen').style.display = 'none';
-    document.getElementById('gameOver').style.display = 'none';
+    const startScreen = document.querySelector('.start-screen');
+    const gameOverScreen = document.getElementById('gameOver');
+    
+    if (startScreen) {
+        startScreen.style.display = 'none';
+        // Force a reflow to ensure the screen is hidden
+        startScreen.offsetHeight;
+    }
+    
+    if (gameOverScreen) {
+        gameOverScreen.style.display = 'none';
+    }
+    
     document.querySelector('.power-up').classList.remove('active');
     updateScore();
     updateCombo();
     updateHealthBar();
+    
+    // Log game start
+    console.log('Game started:', {
+        isMobileDevice,
+        joystickVisible: joystickBase ? joystickBase.classList.contains('visible') : false,
+        startScreenHidden: startScreen ? startScreen.style.display === 'none' : false
+    });
 }
 
 // Update joystick position and player movement with improved responsiveness
@@ -1647,5 +1669,22 @@ function createSpaceAtmosphere() {
 // Initialize the game when the page loads
 window.addEventListener('load', () => {
     init();
+    // Make startGame globally available
     window.startGame = startGame;
+    
+    // Add touch event listener for the start button
+    const startButton = document.querySelector('.start-button');
+    if (startButton) {
+        startButton.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            startGame();
+        }, { passive: false });
+    }
+    
+    // Log initialization
+    console.log('Game initialized:', {
+        isMobileDevice,
+        startButtonExists: !!startButton,
+        windowStartGame: typeof window.startGame === 'function'
+    });
 }); 
