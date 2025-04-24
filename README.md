@@ -35,16 +35,13 @@ A high-performance 3D space-themed runner game built with Three.js. Navigate thr
 
 ### Installation
 
-1. Clone the repository:
+Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/cosmicDash.git
+   git clone https://github.com/gowthamikota/cosmicDash
    cd cosmicDash
    ```
-python : python -m http.server
-Open your browser and navigate to:
-   ```
-   http://localhost:8000
-   ``
+
+
 ## 🎯 How to Play
 
 ### Controls
@@ -73,25 +70,16 @@ Open your browser and navigate to:
 ### Project Structure
 ```
 cosmicDash/
-├── game.js
-├── style.css       
-├── index.html          # Main HTML file       
+├── game.js    
+├── style.css    
+├── index.html          # Main HTML file
 └── README.md           # Documentation
 ```
 
 
-## 📊 Performance Optimization
-
-- Frame-rate independent movement
-- Efficient collision detection
-- Optimized 3D rendering
-- Smooth animations
-- Memory management
-
 ## 🤝 Contributing
 
 We welcome contributions! 
-
 
 ## 🙏 Acknowledgments
 
@@ -101,9 +89,9 @@ We welcome contributions!
 
 ## 📞 contact
 
-email [gowthamikota25@gmail.com](mailto:gowthamikota25@gmail.com) 
+For support, email [gowthmikota25@gmail.com](mailto:gowthamikota25@gmail.com) 
 
 
 <div align="center">
-  <p>Made with ❤️ by the Gowthami</p>
+  <p>Made with ❤️ by the cosmicDash Team</p>
 </div> 
