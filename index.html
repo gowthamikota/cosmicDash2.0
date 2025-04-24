@@ -26,6 +26,7 @@
             max-width: 200px;
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
+            width: 80%;
         }
 
         .instructions-button:hover {
@@ -46,6 +47,8 @@
                 margin: 15px auto;
                 touch-action: manipulation;
                 -webkit-tap-highlight-color: transparent;
+                position: relative;
+                z-index: 1000;
             }
 
             .start-screen {
@@ -102,6 +105,46 @@
                 max-width: 200px;
                 margin: 15px auto;
             }
+
+            /* Add joystick styles */
+            #joystick-base {
+                position: fixed;
+                left: 50%;
+                bottom: 30px;
+                transform: translateX(-50%);
+                width: 100px;
+                height: 100px;
+                background-color: rgba(108, 92, 231, 0.2);
+                border: 3px solid rgba(108, 92, 231, 0.8);
+                border-radius: 50%;
+                z-index: 9999;
+                touch-action: none;
+                user-select: none;
+                -webkit-user-select: none;
+                -webkit-touch-callout: none;
+                transition: all 0.3s ease;
+                box-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
+                display: block;
+            }
+
+            #joystick-handle {
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                background: radial-gradient(circle at 30% 30%, rgba(108, 92, 231, 1), rgba(108, 92, 231, 0.8));
+                border-radius: 50%;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                pointer-events: none;
+                box-shadow: 0 0 15px rgba(108, 92, 231, 0.6);
+                transition: transform 0.3s cubic-bezier(0.4, 0.22, 0.28, 1);
+            }
+
+            #joystick-base.active {
+                background-color: rgba(108, 92, 231, 0.3);
+                box-shadow: 0 0 30px rgba(108, 92, 231, 0.5);
+            }
         }
 
         @media (max-width: 480px) {
@@ -135,6 +178,46 @@
 
             #gameOver h1 {
                 font-size: 1.6em;
+            }
+
+            /* Add joystick styles */
+            #joystick-base {
+                position: fixed;
+                left: 50%;
+                bottom: 15px;
+                transform: translateX(-50%);
+                width: 90px;
+                height: 90px;
+                background-color: rgba(108, 92, 231, 0.2);
+                border: 3px solid rgba(108, 92, 231, 0.8);
+                border-radius: 50%;
+                z-index: 9999;
+                touch-action: none;
+                user-select: none;
+                -webkit-user-select: none;
+                -webkit-touch-callout: none;
+                transition: all 0.3s ease;
+                box-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
+                display: block;
+            }
+
+            #joystick-handle {
+                position: absolute;
+                width: 35px;
+                height: 35px;
+                background: radial-gradient(circle at 30% 30%, rgba(108, 92, 231, 1), rgba(108, 92, 231, 0.8));
+                border-radius: 50%;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                pointer-events: none;
+                box-shadow: 0 0 15px rgba(108, 92, 231, 0.6);
+                transition: transform 0.3s cubic-bezier(0.4, 0.22, 0.28, 1);
+            }
+
+            #joystick-base.active {
+                background-color: rgba(108, 92, 231, 0.3);
+                box-shadow: 0 0 30px rgba(108, 92, 231, 0.5);
             }
         }
     </style>
@@ -170,9 +253,9 @@
         <button class="start-button" id="startButton" ontouchstart="startGame()" onclick="startGame()">
             <i class="fas fa-play"></i> Start Game
         </button>
-        <a href="instructions.html" class="instructions-button" ontouchstart="window.location.href='instructions.html'">
+        <button class="instructions-button" id="instructionsButton" ontouchstart="window.location.href='instructions.html'" onclick="window.location.href='instructions.html'">
             <i class="fas fa-book"></i> How to Play
-        </a>
+        </button>
         <div class="controls-info">
             <p><i class="fas fa-hand-pointer"></i> Tap to Jump</p>
             <p><i class="fas fa-arrows-left-right"></i> Swipe to Move</p>

@@ -387,12 +387,8 @@ function createVirtualJoystick() {
     `;
     joystickBase.appendChild(glowEffect);
 
-    // Log joystick creation
-    console.log('Joystick created:', {
-        base: joystickBase,
-        handle: joystickHandle,
-        visible: window.getComputedStyle(joystickBase).display !== 'none'
-    });
+    // Always show the joystick
+    joystickBase.style.display = 'block';
 }
 
 // Handle orientation change with improved reliability
