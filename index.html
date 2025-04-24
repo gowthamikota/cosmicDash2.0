@@ -32,7 +32,7 @@
             <h1>Game Over!</h1>
             <p>Final Score: <span id="finalScore">0</span></p>
             <p>Highest Combo: <span id="highestCombo">x1</span></p>
-            <button class="restart-button" onclick="window.location.reload()">
+            <button class="restart-button" id="restartButton" ontouchstart="restartGame()" onclick="restartGame()">
                 <i class="fas fa-redo"></i> Play Again
             </button>
         </div>

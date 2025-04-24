@@ -1281,9 +1281,21 @@ function showCollectibleAnimation(position) {
 // Game over with cursor cleanup
 function gameOver() {
     isGameOver = true;
-    document.getElementById('gameOver').style.display = 'block';
-    document.getElementById('finalScore').textContent = score;
-    document.getElementById('highestCombo').textContent = `x${highestCombo}`;
+    const gameOverScreen = document.getElementById('gameOver');
+    if (gameOverScreen) {
+        gameOverScreen.style.display = 'block';
+        document.getElementById('finalScore').textContent = score;
+        document.getElementById('highestCombo').textContent = `x${highestCombo}`;
+        
+        // Add touch event listener for the restart button
+        const restartButton = gameOverScreen.querySelector('.restart-button');
+        if (restartButton) {
+            restartButton.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                restartGame();
+            }, { passive: false });
+        }
+    }
     
     if (joystickBase) {
         joystickBase.classList.remove('visible');
@@ -1292,6 +1304,54 @@ function gameOver() {
     // Hide custom cursor
     const cursor = document.querySelector('.custom-cursor');
     if (cursor) cursor.classList.remove('visible');
+}
+
+// Add restart game function
+function restartGame() {
+    // Reset game state
+    isGameStarted = false;
+    isGameOver = false;
+    score = 0;
+    health = 100;
+    combo = 1;
+    highestCombo = 1;
+    level = 1;
+    gameSpeed = 1;
+    
+    // Reset player position
+    player.position.set(0, 0.5, 0);
+    player.velocity = 0;
+    
+    // Clear existing obstacles and collectibles
+    obstacles.forEach(obstacle => scene.remove(obstacle));
+    collectibles.forEach(collectible => scene.remove(collectible));
+    obstacles = [];
+    collectibles = [];
+    
+    // Hide game over screen
+    const gameOverScreen = document.getElementById('gameOver');
+    if (gameOverScreen) {
+        gameOverScreen.style.display = 'none';
+    }
+    
+    // Show start screen
+    const startScreen = document.querySelector('.start-screen');
+    if (startScreen) {
+        startScreen.style.display = 'flex';
+    }
+    
+    // Reset UI
+    updateScore();
+    updateCombo();
+    updateHealthBar();
+    document.querySelector('.power-up').classList.remove('active');
+    
+    // Log restart
+    console.log('Game restarted:', {
+        isMobileDevice,
+        startScreenVisible: startScreen ? startScreen.style.display !== 'none' : false,
+        gameOverScreenHidden: gameOverScreen ? gameOverScreen.style.display === 'none' : false
+    });
 }
 
 // Animation loop with timestamp
@@ -1669,10 +1729,11 @@ function createSpaceAtmosphere() {
 // Initialize the game when the page loads
 window.addEventListener('load', () => {
     init();
-    // Make startGame globally available
+    // Make startGame and restartGame globally available
     window.startGame = startGame;
+    window.restartGame = restartGame;
     
-    // Add touch event listener for the start button
+    // Add touch event listeners for buttons
     const startButton = document.querySelector('.start-button');
     if (startButton) {
         startButton.addEventListener('touchstart', (e) => {
@@ -1681,10 +1742,20 @@ window.addEventListener('load', () => {
         }, { passive: false });
     }
     
+    const restartButton = document.querySelector('.restart-button');
+    if (restartButton) {
+        restartButton.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            restartGame();
+        }, { passive: false });
+    }
+    
     // Log initialization
     console.log('Game initialized:', {
         isMobileDevice,
         startButtonExists: !!startButton,
-        windowStartGame: typeof window.startGame === 'function'
+        restartButtonExists: !!restartButton,
+        windowStartGame: typeof window.startGame === 'function',
+        windowRestartGame: typeof window.restartGame === 'function'
     });
 }); 
