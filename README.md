@@ -73,6 +73,7 @@ git clone https://github.com/gowthamikota/cosmicDash2.0
 cd cosmicDash2.0
 
 2. Open `index.html` in your web browser
+```
 
 ## 🛠️ Technical Details
 
