@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Cube Runner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6C5CE7;
+            --secondary-color: #A8A4FF;
+            --accent-color: #FFD700;
+            --danger-color: #FF4757;
+            --success-color: #2ED573;
+            --background-dark: rgba(0, 0, 0, 0.7);
+            --text-light: #FFFFFF;
+            --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .game-ui {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* Score Display */
+        #score {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--background-dark);
+            padding: 15px 25px;
+            border-radius: 15px;
+            color: var(--success-color);
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            text-shadow: var(--text-shadow);
+            border: 2px solid var(--success-color);
+            box-shadow: 0 0 20px rgba(46, 213, 115, 0.3);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        #score:hover {
+            transform: scale(1.05);
+        }
+
+        #score i {
+            color: var(--accent-color);
+            font-size: 28px;
+        }
+
+        /* Combo Counter */
+        #combo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--background-dark);
+            padding: 15px 25px;
+            border-radius: 15px;
+            color: var(--accent-color);
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            text-shadow: var(--text-shadow);
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+
+        #combo.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Health Bar */
+        .health-container {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid var(--danger-color);
+            box-shadow: 0 0 20px rgba(255, 71, 87, 0.2);
+        }
+
+        #health {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, var(--danger-color), #ff6b81);
+            transition: width 0.3s ease;
+        }
+
+        /* Power-up Indicator */
+        .power-up {
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--background-dark);
+            padding: 10px 20px;
+            border-radius: 15px;
+            color: var(--primary-color);
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            text-shadow: var(--text-shadow);
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .power-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Game Over Screen */
+        #gameOver {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--background-dark);
+            padding: 40px 60px;
+            border-radius: 30px;
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            text-align: center;
+            display: none;
+            border: 2px solid var(--danger-color);
+            box-shadow: 0 0 40px rgba(255, 71, 87, 0.3);
+            backdrop-filter: blur(15px);
+            animation: pulse 2s infinite;
+        }
+
+        #gameOver h1 {
+            color: var(--danger-color);
+            margin: 0 0 20px 0;
+            text-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+            background: linear-gradient(45deg, #ff4757, #ff6b81);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #gameOver p {
+            font-size: 24px;
+            margin: 10px 0;
+            color: var(--text-light);
+            text-shadow: var(--text-shadow);
+        }
+
+        .restart-button {
+            background: linear-gradient(45deg, var(--danger-color), #ff6b81);
+            border: none;
+            padding: 15px 40px;
+            font-size: 20px;
+            color: var(--text-light);
+            border-radius: 15px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            pointer-events: auto;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+        }
+
+        .restart-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 71, 87, 0.6);
+        }
+
+        .restart-button:active {
+            transform: translateY(1px);
+        }
+
+        /* Level Up Animation */
+        .level-up {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--background-dark);
+            padding: 30px 50px;
+            border-radius: 25px;
+            text-align: center;
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 0 40px rgba(108, 92, 231, 0.4);
+            backdrop-filter: blur(15px);
+            animation: levelUp 1.5s forwards;
+        }
+
+        .level-up h2 {
+            color: var(--primary-color);
+            font-size: 42px;
+            margin: 0;
+            text-shadow: 0 0 15px rgba(108, 92, 231, 0.5);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Collectible Animation */
+        .collectible-animation {
+            position: absolute;
+            color: var(--accent-color);
+            font-size: 28px;
+            animation: collectibleFloat 1.2s forwards;
+            pointer-events: none;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            font-weight: bold;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.02); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes levelUp {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+        }
+
+        @keyframes collectibleFloat {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100px) scale(0); opacity: 0; }
+        }
+
+        /* Start Screen */
+        .start-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--background-dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .start-screen h1 {
+            color: var(--primary-color);
+            font-size: 72px;
+            margin: 0 0 20px 0;
+            text-shadow: 0 0 20px rgba(108, 92, 231, 0.5);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .start-button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 20px 50px;
+            font-size: 24px;
+            color: var(--text-light);
+            border-radius: 15px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        .start-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.6);
+        }
+
+        .start-button:active {
+            transform: translateY(1px);
+        }
+
+        .controls-info {
+            color: var(--text-light);
+            font-size: 18px;
+            margin-top: 30px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .controls-info i {
+            color: var(--accent-color);
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-ui">
+        <div id="score">
+            <i class="fas fa-trophy"></i>
+            Score: 0
+        </div>
+        <div id="combo">
+            <i class="fas fa-bolt"></i>
+            Combo: x1
+        </div>
+        <div class="health-container">
+            <div id="health"></div>
+        </div>
+        <div class="power-up">
+            <i class="fas fa-star"></i>
+            Power-up Active!
+        </div>
+        <div id="gameOver">
+            <h1>Game Over!</h1>
+            <p>Final Score: <span id="finalScore">0</span></p>
+            <p>Highest Combo: <span id="highestCombo">x1</span></p>
+            <button class="restart-button" onclick="window.location.reload()">
+                <i class="fas fa-redo"></i> Play Again
+            </button>
+        </div>
+    </div>
+    <div class="start-screen">
+        <h1>Cube Runner</h1>
+        <button class="start-button" onclick="startGame()">
+            <i class="fas fa-play"></i> Start Game
+        </button>
+        <div class="controls-info">
+            <p><i class="fas fa-arrow-up"></i> Jump</p>
+            <p><i class="fas fa-arrow-left"></i> <i class="fas fa-arrow-right"></i> Move</p>
+            <p>Collect <i class="fas fa-star"></i> for power-ups</p>
+        </div>
+    </div>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="game.js"></script>
+</body>
+</html> 
