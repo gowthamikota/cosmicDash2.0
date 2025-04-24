@@ -44,15 +44,63 @@
                 width: 80%;
                 max-width: 250px;
                 margin: 15px auto;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
             }
 
             .start-screen {
                 padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
             }
 
             .controls-info {
                 font-size: 0.9em;
                 padding: 10px;
+                text-align: center;
+                width: 90%;
+                max-width: 300px;
+            }
+
+            .start-button {
+                width: 80%;
+                max-width: 250px;
+                margin: 15px auto;
+                padding: 15px 30px;
+                font-size: 1.2em;
+            }
+
+            .game-ui {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+
+            #score, #combo {
+                font-size: 1.1em;
+            }
+
+            .health-container {
+                width: 80%;
+                max-width: 200px;
+            }
+
+            #gameOver {
+                padding: 20px;
+                width: 90%;
+                max-width: 300px;
+            }
+
+            #gameOver h1 {
+                font-size: 1.8em;
+            }
+
+            .restart-button {
+                width: 80%;
+                max-width: 200px;
+                margin: 15px auto;
             }
         }
 
@@ -60,6 +108,33 @@
             .instructions-button {
                 padding: 10px 20px;
                 font-size: 1em;
+                width: 90%;
+            }
+
+            .start-button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+                width: 90%;
+            }
+
+            .controls-info p {
+                margin: 8px 0;
+            }
+
+            #score, #combo {
+                font-size: 1em;
+            }
+
+            .health-container {
+                width: 90%;
+            }
+
+            #gameOver {
+                width: 95%;
+            }
+
+            #gameOver h1 {
+                font-size: 1.6em;
             }
         }
     </style>
@@ -95,7 +170,7 @@
         <button class="start-button" id="startButton" ontouchstart="startGame()" onclick="startGame()">
             <i class="fas fa-play"></i> Start Game
         </button>
-        <a href="instructions.html" class="instructions-button">
+        <a href="instructions.html" class="instructions-button" ontouchstart="window.location.href='instructions.html'">
             <i class="fas fa-book"></i> How to Play
         </a>
         <div class="controls-info">
