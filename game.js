@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 // Game state
-let scene, camera, renderer, player, controls;
+let scene, camera, renderer, player;
 let obstacles = [];
 let collectibles = [];
 let powerUps = [];
@@ -14,11 +14,9 @@ let isGameOver = false;
 let isGameStarted = false;
 let powerUpActive = false;
 let powerUpEndTime = 0;
-let lastCollectibleTime = 0;
 let comboTimeout = null;
 let lastTime = 0;
 let playerVelocity = 0;
-let playerDirection = 0;
 let gameSpeed = 1;
 let level = 1;
 let particles = [];
@@ -28,18 +26,13 @@ let targetColumn = 0;
 let isMoving = false;
 
 // Game settings
-const PLAYER_SPEED = 0.12;
+
 const JUMP_FORCE = 0.25;
 const GRAVITY = 0.015;
 const OBSTACLE_SPEED = 0.12;
 const COLLECTIBLE_SPAWN_RATE = 0.015;
 const POWER_UP_DURATION = 5000;
 const COMBO_TIMEOUT = 2000;
-const PLAYER_ACCELERATION = 0.08;
-const PLAYER_DECELERATION = 0.05;
-const MAX_PLAYER_SPEED = 0.25;
-const PLAYER_FRICTION = 0.92;
-const PLAYER_BOUNDS = 3.0;
 const INVINCIBLE_DURATION = 3000;
 const LEVEL_UP_SCORE = 1000;
 const COLUMN_TRANSITION_SPEED = 0.2;
@@ -347,7 +340,7 @@ function update(currentTime) {
         if (playerVelocity < -0.1) {
             playerVelocity = -playerVelocity * 0.2;
         } else {
-            playerVelocity = 0;
+        playerVelocity = 0;
         }
     }
 
@@ -355,7 +348,7 @@ function update(currentTime) {
     for (let i = obstacles.length - 1; i >= 0; i--) {
         obstacles[i].position.z += OBSTACLE_SPEED * gameSpeed * deltaTime * 60;
         obstacles[i].rotation.y += 0.01 * deltaTime * 60;
-        
+
         if (checkCollision(player, obstacles[i])) {
             if (!isInvincible) {
                 takeDamage();
@@ -710,6 +703,6 @@ function animate(currentTime) {
 
 // Initialize the game when the page loads
 window.addEventListener('load', () => {
-    init();
+init();
     window.startGame = startGame;
 }); 
