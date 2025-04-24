@@ -93,5 +93,5 @@ For support, email [gowthmikota25@gmail.com](mailto:gowthamikota25@gmail.com)
 
 
 <div align="center">
-  <p>Made with ❤️ by the cosmicDash Team</p>
+  <p>Made with ❤️ by Gowthami Kota</p>
 </div> 
