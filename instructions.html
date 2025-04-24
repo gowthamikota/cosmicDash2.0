@@ -10,16 +10,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
+        body {
+            min-height: 100vh;
+            overflow-y: auto;
+            background: #0a0a1a;
+            margin: 0;
+            padding: 0;
+        }
+
         .instructions-container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
             color: #fff;
+            min-height: 100vh;
+            box-sizing: border-box;
         }
 
         .instructions-header {
             text-align: center;
             margin-bottom: 30px;
+            padding-top: 20px;
         }
 
         .instructions-header h1 {
@@ -80,7 +91,9 @@
             cursor: pointer;
             text-decoration: none;
             transition: all 0.3s ease;
-            margin-top: 20px;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
         }
 
         .back-button:hover {
@@ -108,6 +121,7 @@
         @media (max-width: 768px) {
             .instructions-container {
                 padding: 15px;
+                width: 100%;
             }
 
             .instructions-header h1 {
@@ -116,6 +130,12 @@
 
             .controls-list li {
                 font-size: 0.9em;
+            }
+
+            .back-button {
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
             }
         }
     </style>
