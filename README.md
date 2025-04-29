@@ -124,6 +124,8 @@ For support, email [gowthamikota25@gmail.com](mailto:gowthamikota25@gmail.com)
 
 ---
 
+try cosmicDash: https://cosmicdash2.netlify.app/
+
 <div align="center">
   <p>Made with ❤️ by Gowthami Kota</p>
 </div> 
